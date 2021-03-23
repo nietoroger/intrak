@@ -69,6 +69,7 @@ export default {
         await this.$fire.auth
           .signInWithEmailAndPassword(this.form.username, this.form.password)
           .then((data) => {
+            console.log(data);
             this.loading = false;
             this.$router.push("/principal");
           });
