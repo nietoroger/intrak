@@ -18,12 +18,9 @@ export const getters = {
 export const mutations = {
   SET_USER: (state, { authUser, claims }) => {
     if (authUser) {
-      console.log('set_user_start');
-
       state.authenticated = true;
       const { uid, email, emailVerified, displayName } = authUser
       state.auth = { uid, email, emailVerified, displayName, claims }
-      console.log('set_user_end');
     } else {
       state.authenticated = false;
       state.auth = undefined;
@@ -37,11 +34,10 @@ export const mutations = {
 
 export const actions = {
   onAuthStateChangedAction(ctx, { authUser, claims }) {
-    console.log('store_user', authUser);
     if (!authUser) {
       ctx.commit("RESET_USER");
     } else {
-      return ctx.commit("SET_USER", { authUser, claims });
+      ctx.commit("SET_USER", { authUser, claims });
     }
   }
 }
